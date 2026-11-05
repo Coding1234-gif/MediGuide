@@ -2,14 +2,14 @@ import "server-only";
 import { env } from "@/config/env";
 import { extractionResultSchema, normalizeExtraction, type ExtractionResult } from "@/lib/validation/extraction";
 import { FixtureExtractionProvider } from "./fixture-provider";
-import { OpenAIExtractionProvider } from "./openai-provider";
+import { GroqExtractionProvider } from "./groq-provider";
 import { ExtractionProviderError, type ExtractionInput, type InstructionExtractionProvider } from "./provider";
 
 let override: InstructionExtractionProvider | undefined;
 
 export function getExtractionProvider(): InstructionExtractionProvider {
   if (override) return override;
-  return env.OPENAI_API_KEY ? new OpenAIExtractionProvider() : new FixtureExtractionProvider();
+  return env.GROQ_API_KEY ? new GroqExtractionProvider() : new FixtureExtractionProvider();
 }
 
 export function setExtractionProviderForTests(p: InstructionExtractionProvider | undefined) {
@@ -24,8 +24,14 @@ export type ValidatedExtraction = {
 
 /** Run the provider, then treat its output as untrusted: Zod-validate and normalise invariants. */
 export async function runInstructionExtraction(input: ExtractionInput): Promise<ValidatedExtraction> {
-  const raw = await getExtractionProvider().extract(input);
-  const parsed = extractionResultSchema.safeParse(raw.json);
+  const provider = getExtractionProvider();
+  let raw = await provider.extract(input);
+  let parsed = extractionResultSchema.safeParse(raw.json);
+  if (!parsed.success) {
+    // Live models occasionally return the wrong shape; one retry is cheap, and the output is validated either way.
+    raw = await provider.extract(input);
+    parsed = extractionResultSchema.safeParse(raw.json);
+  }
   if (!parsed.success) {
     throw new ExtractionProviderError("invalid_output", "The AI returned data in an unexpected shape.", true);
   }

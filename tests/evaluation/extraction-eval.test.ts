@@ -7,7 +7,7 @@
  *  - unsafe-schedule blocking (does the pipeline refuse the samples it should?)
  *
  * By default it evaluates the fixture provider (a sanity check of the harness itself).
- * Set EVAL_LIVE=1 with OPENAI_API_KEY to evaluate the real model:  EVAL_LIVE=1 npm run eval
+ * Set EVAL_LIVE=1 with GROQ_API_KEY to evaluate the real model:  EVAL_LIVE=1 npm run eval
  * These numbers measure transcription quality on synthetic labels only — NOT clinical effectiveness.
  */
 import { readFile } from "node:fs/promises";
@@ -20,15 +20,15 @@ import { FixtureExtractionProvider } from "@/lib/ai/fixture-provider";
 import { assessSchedulability } from "@/lib/scheduler/validation";
 import { EXTRACTION_FIELD_KEYS, initialVerifiedFields } from "@/lib/validation/extraction";
 
-const live = process.env.EVAL_LIVE === "1" && !!process.env.OPENAI_API_KEY;
+const live = process.env.EVAL_LIVE === "1" && !!process.env.GROQ_API_KEY;
 const norm = (s: string | null) => (s ?? "").toLowerCase().replace(/[^a-z0-9%]+/g, " ").trim();
 
 describe(`extraction evaluation (${live ? "live model" : "fixture provider"})`, () => {
   it("meets minimum quality and never produces an unsafe schedule", async () => {
     if (!live) setExtractionProviderForTests(new FixtureExtractionProvider());
     else {
-      const { OpenAIExtractionProvider } = await import("@/lib/ai/openai-provider");
-      setExtractionProviderForTests(new OpenAIExtractionProvider());
+      const { GroqExtractionProvider } = await import("@/lib/ai/groq-provider");
+      setExtractionProviderForTests(new GroqExtractionProvider());
     }
 
     let fields = 0, correct = 0, falseExtractions = 0, expectedMissing = 0, detectedMissing = 0, unsafe = 0;
@@ -65,5 +65,5 @@ describe(`extraction evaluation (${live ? "live model" : "fixture provider"})`, 
     expect(report.unsafeSchedules).toBe(0);
     expect(report.falseExtractionRate).toBeLessThanOrEqual(live ? 0.1 : 0);
     expect(report.fieldAccuracy).toBeGreaterThanOrEqual(live ? 0.8 : 1);
-  }, 180_000);
+  }, 900_000);
 });

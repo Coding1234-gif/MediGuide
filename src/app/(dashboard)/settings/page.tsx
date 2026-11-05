@@ -83,8 +83,8 @@ export default async function SettingsPage() {
           <CardContent className="space-y-2 text-sm text-muted-foreground">
             <p>Documents and details are only visible to you. We don&apos;t log the contents of documents or symptoms.</p>
             <p>
-              {status.ai === "openai"
-                ? "Uploaded documents are sent to our AI provider (OpenAI) only to read the text, then the result is stored in your account."
+              {status.ai === "groq"
+                ? "Uploaded documents are sent to our AI provider (Groq) only to read the text, then the result is stored in your account."
                 : "Live AI isn't enabled on this server; documents are not sent to any AI provider."}
             </p>
             <p>MediGuide is a hackathon prototype. It isn&apos;t a certified medical device and hasn&apos;t been clinically validated.</p>

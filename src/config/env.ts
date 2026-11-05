@@ -22,9 +22,9 @@ const envSchema = z.object({
   SUPABASE_SERVICE_ROLE_KEY: optional,
   SUPABASE_STORAGE_BUCKET: z.string().default("instruction-documents"),
 
-  OPENAI_API_KEY: optional,
-  AI_EXTRACTION_MODEL: z.string().default("gpt-5-mini"),
-  AI_SUMMARY_MODEL: z.string().default("gpt-5-mini"),
+  GROQ_API_KEY: optional,
+  AI_EXTRACTION_MODEL: z.string().default("qwen/qwen3.8-27b"),
+  AI_SUMMARY_MODEL: z.string().default("openai/gpt-oss-120b"),
 
   /** Enables the demo sign-in (two fictional accounts) and fixture extraction. */
   MEDIGUIDE_DEMO_MODE: z
@@ -58,7 +58,7 @@ export function integrationStatus() {
     database: env.DATABASE_URL ? "postgres" : "local-pglite",
     auth: isSupabaseConfigured() ? "supabase" : "demo",
     storage: isSupabaseConfigured() && env.SUPABASE_SERVICE_ROLE_KEY ? "supabase" : "local",
-    ai: env.OPENAI_API_KEY ? "openai" : "fixtures",
+    ai: env.GROQ_API_KEY ? "groq" : "fixtures",
     email: env.RESEND_API_KEY && env.REMINDER_EMAIL_FROM ? "resend" : "disabled",
   } as const;
 }

@@ -76,7 +76,7 @@ export const extractions = pgTable(
   {
     id: uuid("id").primaryKey().defaultRandom(),
     documentId: uuid("document_id").notNull().references(() => documents.id, { onDelete: "cascade" }),
-    /** e.g. "openai:gpt-5-mini" or "fixture:v1" — fixture output is never presented as live AI. */
+    /** e.g. "groq:<model>" or "fixture:v1" — fixture output is never presented as live AI. */
     modelIdentifier: text("model_identifier").notNull(),
     /** Raw, schema-validated model output. Immutable after insert. */
     extractedFields: jsonb("extracted_fields").$type<ExtractionResult>().notNull(),

@@ -203,7 +203,7 @@ export function VerificationWorkspace({ document: doc, extraction: initialExtrac
         </span>
       ) : (
         <span>
-          Read by AI ({extraction.modelIdentifier.replace("openai:", "")}). AI can make mistakes — compare every field with your document.
+          Read by AI ({extraction.modelIdentifier.replace(/^(groq|openai):/, "")}). AI can make mistakes — compare every field with your document.
         </span>
       )}
     </div>

@@ -71,4 +71,7 @@ RULES — follow all of them:
 9. warnings: printed warnings/cautions (e.g. "may cause drowsiness"). other_guidance: other printed advice that is not a warning.
 10. If more than one medicine is described, transcribe only the first/most prominent one in fields and list the other names in additional_medicines_detected.
 11. document_type: "medicine_instructions", or "unrelated" if it is not medicine instructions, or "unreadable" if almost nothing can be read.
-12. requires_user_verification is always true.`;
+12. requires_user_verification is always true.
+13. VERBATIM VALUES: "value" must be an exact copy of the printed words, including small words. Never shorten or rephrase. Examples: "for 7 days" (NOT "7 days"), "THREE times a day" (NOT "3x"), "three times daily after meals" (NOT "after meals"). The same applies to "source_text".
+14. CONTRADICTIONS: scan the WHOLE document before answering. If frequency, dose, duration or timing is stated more than once with different meanings (for example "twice a day" on one line and "three times daily after meals" on another), do NOT choose one. Put the first statement in its own field, copy the conflicting statement word-for-word into timing_instructions or special_conditions (whichever fits), and set status="needs_verification" on BOTH fields. Never drop a conflicting statement.
+15. If you are unsure whether a statement is a conflict, treat it as one.`;

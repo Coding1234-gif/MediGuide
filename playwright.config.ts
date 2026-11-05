@@ -26,7 +26,7 @@ export default defineConfig({
     env: {
       MEDIGUIDE_DATA_DIR: ".data/e2e",
       MEDIGUIDE_DEMO_MODE: "true",
-      OPENAI_API_KEY: "",
+      GROQ_API_KEY: "",
       NEXT_PUBLIC_SUPABASE_URL: "",
       NEXT_PUBLIC_SUPABASE_ANON_KEY: "",
       DATABASE_URL: "",

@@ -20,7 +20,7 @@ const NAV = [
 ] as const;
 
 export type ShellUser = { displayName: string; email: string | null; authMode: "supabase" | "demo" };
-export type ShellIntegrations = { ai: "openai" | "fixtures"; auth: "supabase" | "demo"; database: string };
+export type ShellIntegrations = { ai: "groq" | "fixtures"; auth: "supabase" | "demo"; database: string };
 
 function isActive(pathname: string, href: string) {
   return pathname === href || pathname.startsWith(`${href}/`);

@@ -37,7 +37,7 @@ export class FixtureExtractionProvider implements InstructionExtractionProvider 
     if (!sample) {
       throw new ExtractionProviderError(
         "not_configured",
-        "AI extraction isn't configured on this server (no OPENAI_API_KEY). In fixture mode only the bundled sample documents can be processed.",
+        "AI extraction isn't configured on this server (no GROQ_API_KEY). In fixture mode only the bundled sample documents can be processed.",
         false,
       );
     }

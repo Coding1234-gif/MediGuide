@@ -47,7 +47,12 @@ export function assessSchedulability(fields: VerifiedFields): Schedulability {
 
   let pattern: FrequencyPattern | null = null;
   if (fields.frequency.value && fields.frequency.state !== "unclear") {
-    const timing = fields.timing_instructions.state === "missing" ? null : fields.timing_instructions.value;
+    // Conflicting frequencies can end up in any free-text field, so check timing and special conditions together.
+    const timing =
+      [fields.timing_instructions, fields.special_conditions]
+        .filter((f) => f.state !== "missing" && f.value)
+        .map((f) => f.value)
+        .join(" | ") || null;
     const parsed = parseFrequency(fields.frequency.value, timing);
     if (parsed.kind === "unsupported") reasons.push({ field: "frequency", message: parsed.reason });
     else pattern = parsed;

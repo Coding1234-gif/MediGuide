@@ -9,7 +9,7 @@ export type ExtractionInput = {
 export type ProviderRawOutput = {
   /** Unvalidated JSON from the provider; always passed through Zod before use. */
   json: unknown;
-  /** "openai:<model>" or "fixture:<sample-id>" — persisted with the extraction. */
+  /** "groq:<model>" or "fixture:<sample-id>" — persisted with the extraction. */
   modelIdentifier: string;
   /** True only for real model inference. Fixture results are labelled in the UI. */
   live: boolean;
