@@ -4,7 +4,7 @@
   "description": "Understand your health. Simplify your medicine. Stay on track.",
   "start_url": "/dashboard",
   "display": "standalone",
-  "background_color": "#f7fafa",
-  "theme_color": "#2b7f80",
+  "background_color": "#ffffff",
+  "theme_color": "#14589f",
   "icons": [{ "src": "/icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
 }

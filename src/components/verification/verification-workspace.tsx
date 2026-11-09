@@ -317,7 +317,7 @@ export function VerificationWorkspace({ document: doc, extraction: initialExtrac
   );
 
   const footer = (
-    <div className="sticky bottom-16 z-20 space-y-3 rounded-2xl border bg-card/95 p-4 shadow-lg backdrop-blur md:bottom-4">
+    <div className="sticky bottom-16 z-20 space-y-3 rounded-lg border border-input bg-card p-4 md:bottom-4">
       <p className="text-sm text-muted-foreground" aria-live="polite">
         {unreviewed.length > 0 ? (
           <>

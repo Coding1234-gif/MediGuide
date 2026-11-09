@@ -6,7 +6,7 @@ import { buttonVariants } from "@/components/ui/button";
 export default function MarketingLayout({ children }: LayoutProps<"/">) {
   return (
     <div className="flex min-h-dvh flex-col">
-      <header className="sticky top-0 z-30 border-b border-transparent bg-background/80 backdrop-blur supports-backdrop-filter:bg-background/70">
+      <header className="sticky top-0 z-30 border-b bg-background">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
           <Logo />
           <nav aria-label="Site" className="flex items-center gap-1 sm:gap-2">
@@ -25,10 +25,10 @@ export default function MarketingLayout({ children }: LayoutProps<"/">) {
       <main id="main" className="flex-1">
         {children}
       </main>
-      <footer className="border-t bg-card">
+      <footer className="bg-secondary">
         <div className="mx-auto max-w-6xl space-y-3 px-4 py-8 sm:px-6">
           <div className="flex flex-wrap items-center justify-between gap-3 text-sm text-muted-foreground">
-            <span>MediGuide · built for LaunchPad Hacks 2026</span>
+            <span>MediGuide, built for LaunchPad Hacks 2026</span>
             <Link href="/prevention" className="hover:text-foreground">Prevention tips</Link>
           </div>
           <MedicalDisclaimer />

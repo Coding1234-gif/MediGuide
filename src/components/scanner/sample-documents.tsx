@@ -38,7 +38,7 @@ export function SampleDocuments({ samples }: { samples: SampleSummary[] }) {
             disabled={busy !== null}
             className="flex w-full items-start gap-3 rounded-xl border bg-card p-3 text-left transition-colors hover:border-primary/40 hover:bg-accent/40 focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none disabled:opacity-60"
           >
-            <span className="mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-lg bg-secondary text-primary" aria-hidden="true">
+            <span className="mt-0.5 shrink-0 text-primary" aria-hidden="true">
               {busy === s.id ? <Loader2 className="size-4 animate-spin" /> : <FlaskConical className="size-4" />}
             </span>
             <span className="min-w-0">

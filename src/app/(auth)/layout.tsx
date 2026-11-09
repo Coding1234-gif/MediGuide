@@ -3,7 +3,7 @@ import { MedicalDisclaimer } from "@/components/shared/notice";
 
 export default function AuthLayout({ children }: LayoutProps<"/">) {
   return (
-    <div className="flex min-h-dvh flex-col bg-gradient-to-b from-secondary/70 to-background">
+    <div className="flex min-h-dvh flex-col bg-secondary">
       <header className="mx-auto w-full max-w-6xl px-4 py-5 sm:px-6">
         <Logo />
       </header>
