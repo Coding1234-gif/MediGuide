@@ -27,8 +27,8 @@ React Testing Library · Playwright.
 
 ## Quick start (no credentials needed)
 
-Go to https://mediguide-ask-dffe.vercel.app/
-**Get started** --> **Scan Instructions**/**Symptom Info**
+Go to https://mediguide-ask-dffe.vercel.app/ 
+**Get started** --> **Scan Instructions**/**Symptom Info** 
 Test the different features
 
 ## Full setup (if needed)
