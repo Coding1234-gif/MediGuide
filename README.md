@@ -27,35 +27,11 @@ React Testing Library · Playwright.
 
 ## Quick start (no credentials needed)
 
-```bash
-npm install
-```
+Go to https://mediguide-ask-dffe.vercel.app/
+**Get started** --> **Scan Instructions**/**Symptom Info**
+Test the different features
 
-```bash
-npx playwright install chromium
-```
-
-```bash
-npm run samples
-```
-
-```bash
-npm run dev
-```
-
-Open http://localhost:3000 → **Get started** → **Continue as Alex (demo)** → **Scan instructions** → pick a fictional sample.
-
-Without credentials the app runs in **local demo mode**:
-
-- **Database:** embedded Postgres (PGlite) in `.data/pglite`, with migrations applied automatically.
-- **Storage:** local files in `.data/uploads`.
-- **Auth:** two fictional demo accounts (two accounts make it possible to demo data isolation).
-- **AI:** a *fixture provider* that recognises only the bundled samples in `public/samples` and returns
-  hand-written results, labelled in the UI as "Pre-written sample result". It refuses any other file.
-
-A banner states plainly whenever demo accounts or fixtures are in use.
-
-## Full setup
+## Full setup (if needed)
 
 1. Create a Supabase project, then copy `.env.example` to `.env.local` and fill in `DATABASE_URL`,
    `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY` and `SUPABASE_SERVICE_ROLE_KEY`.
