@@ -83,7 +83,7 @@ export function FieldReview({
             <Quote className="mt-0.5 size-3 shrink-0" aria-hidden="true" />
             <span>
               Found on {extracted.page ? `page ${extracted.page}` : "the document"} as{" "}
-              <mark className="rounded bg-warning-soft px-1 font-mono text-foreground">{extracted.source_text}</mark>
+              <mark className="rounded bg-accent px-1 text-foreground">{extracted.source_text}</mark>
             </span>
           </p>
         ) : (

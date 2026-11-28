@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Bell, CalendarClock, CheckCircle2, HeartPulse, ScanLine } from "lucide-react";
+import { Bell, CalendarClock, CheckCircle2, HeartPulse, ScanLine } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { EmptyState } from "@/components/shared/page-header";
@@ -38,7 +38,7 @@ export default async function DashboardPage() {
 
   return (
     <div className="space-y-8">
-      <section className="flex flex-col gap-4 rounded-2xl bg-gradient-to-br from-secondary via-card to-card p-6 ring-1 ring-border sm:flex-row sm:items-center sm:justify-between">
+      <section className="flex flex-col gap-4 border-b pb-6 sm:flex-row sm:items-center sm:justify-between">
         <div className="space-y-1">
           <p className="text-sm text-muted-foreground">{formatLocal(new Date(), tz, "EEEE d MMMM")}</p>
           <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">
@@ -123,13 +123,13 @@ export default async function DashboardPage() {
                         <StatusBadge status={s.status} />
                       </div>
                       <p className="text-sm text-muted-foreground">
-                        {s.confirmedInstructions.frequencySummary} · {s.confirmedInstructions.dailyTimes.join(", ")}
+                        {s.confirmedInstructions.frequencySummary}, at {s.confirmedInstructions.dailyTimes.join(", ")}
                       </p>
                       <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-muted" aria-hidden="true">
                         <div className="h-full rounded-full bg-success" style={{ width: `${s.total ? (s.acknowledged / s.total) * 100 : 0}%` }} />
                       </div>
                       <p className="mt-1 text-xs text-muted-foreground">
-                        {s.acknowledged}/{s.total} marked done{s.nextAt ? ` · next ${formatLocal(s.nextAt, tz, "EEE HH:mm")}` : ""}
+                        {s.acknowledged}/{s.total} marked done{s.nextAt ? `. Next: ${formatLocal(s.nextAt, tz, "EEE HH:mm")}` : ""}
                       </p>
                     </Link>
                   </li>
@@ -144,9 +144,8 @@ export default async function DashboardPage() {
               <ul className="space-y-2">
                 {awaitingVerification.map((d) => (
                   <li key={d.id}>
-                    <Link href={`/scan/${d.id}`} className="flex items-center justify-between gap-2 rounded-xl border bg-card p-3 text-sm hover:border-primary/40">
-                      <span className="truncate">{d.originalName}</span>
-                      <ArrowRight className="size-4 shrink-0 text-muted-foreground" aria-hidden="true" />
+                    <Link href={`/scan/${d.id}`} className="block truncate rounded-xl border bg-card p-3 text-sm hover:border-primary/40">
+                      {d.originalName}
                     </Link>
                   </li>
                 ))}
@@ -176,21 +175,17 @@ function QuickAction({ href, icon, title, text, primary }: { href: string; icon:
     <Link
       href={href}
       className={cn(
-        "group flex items-center gap-4 rounded-2xl border p-5 transition-all hover:-translate-y-0.5 hover:shadow-md focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none",
-        primary ? "border-primary/20 bg-primary text-primary-foreground" : "bg-card",
+        "flex items-center gap-4 rounded-lg border p-5 transition-colors focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none",
+        primary ? "border-transparent bg-action text-action-foreground hover:bg-action-hover" : "bg-card hover:border-primary/40 hover:bg-accent/40",
       )}
     >
-      <span
-        className={cn("flex size-11 shrink-0 items-center justify-center rounded-xl [&_svg]:size-5", primary ? "bg-primary-foreground/15" : "bg-secondary text-primary")}
-        aria-hidden="true"
-      >
+      <span className={cn("shrink-0 [&_svg]:size-6", !primary && "text-primary")} aria-hidden="true">
         {icon}
       </span>
       <span className="min-w-0 flex-1">
         <span className="block font-semibold">{title}</span>
-        <span className={cn("block text-sm", primary ? "text-primary-foreground/80" : "text-muted-foreground")}>{text}</span>
+        <span className={cn("block text-sm", primary ? "text-action-foreground/90" : "text-muted-foreground")}>{text}</span>
       </span>
-      <ArrowRight className="size-5 shrink-0 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
     </Link>
   );
 }

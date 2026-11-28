@@ -90,9 +90,7 @@ export function UploadDropzone() {
             dragging && "border-primary bg-accent/60",
           )}
         >
-          <div className="flex size-14 items-center justify-center rounded-full bg-secondary text-primary" aria-hidden="true">
-            <UploadCloud className="size-7" />
-          </div>
+          <UploadCloud className="size-8 text-primary" aria-hidden="true" />
           <div className="space-y-1">
             <p className="font-medium">
               <span className="text-primary underline underline-offset-4">Choose a file</span> or drag it here

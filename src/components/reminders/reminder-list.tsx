@@ -76,9 +76,7 @@ export function ReminderList({
               <p className="text-base font-semibold tabular-nums">{formatLocal(item.scheduledAt, timezone, "HH:mm")}</p>
               {timeFormat !== "HH:mm" ? <p className="text-[11px] text-muted-foreground">{formatLocal(item.scheduledAt, timezone, "EEE d MMM")}</p> : null}
             </div>
-            <div className="flex size-9 shrink-0 items-center justify-center rounded-full bg-secondary text-primary" aria-hidden="true">
-              <Pill className="size-4" />
-            </div>
+            <Pill className="size-5 shrink-0 text-primary" aria-hidden="true" />
             <div className="min-w-0 flex-1">
               <p className={cn("truncate font-medium", done && "text-muted-foreground line-through decoration-1")}>{item.medicineName}</p>
               <p className="truncate text-sm text-muted-foreground">

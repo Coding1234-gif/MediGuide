@@ -242,7 +242,7 @@ function SymptomResults({ result, onReset }: { result: SymptomResult; onReset: (
 
       {result.overview ? (
         <section className="space-y-2 rounded-2xl border bg-card p-5">
-          <p className="text-xs font-medium tracking-wide text-muted-foreground uppercase">What the sources say</p>
+          <p className="text-sm font-semibold">What the sources say</p>
           <p className="leading-relaxed">{result.overview.text}</p>
           <p className="text-xs text-muted-foreground">
             {result.overview.source === "curated"

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import type { ReactNode } from "react";
-import { Bell, CalendarClock, HeartPulse, LayoutDashboard, LogOut, ScanLine, Settings, ShieldCheck } from "lucide-react";
+import { Bell, CalendarClock, HeartPulse, LayoutDashboard, LogOut, ScanLine, Settings } from "lucide-react";
 import { Logo } from "@/components/shared/logo";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -67,10 +67,7 @@ export function AppShell({ user, integrations, children }: { user: ShellUser; in
           })}
         </nav>
         <div className="space-y-3 border-t pt-4">
-          <div className="flex items-start gap-2 rounded-lg bg-muted/60 p-3 text-xs text-muted-foreground">
-            <ShieldCheck className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden="true" />
-            Reminders only come from instructions you&apos;ve verified.
-          </div>
+          <p className="px-1 text-xs text-muted-foreground">Reminders only come from instructions you&apos;ve verified.</p>
           <div className="flex items-center justify-between gap-2 px-1">
             <div className="min-w-0">
               <p className="truncate text-sm font-medium">{user.displayName}</p>
@@ -84,7 +81,7 @@ export function AppShell({ user, integrations, children }: { user: ShellUser; in
       </aside>
 
       {/* Mobile top bar */}
-      <header className="sticky top-0 z-30 flex items-center justify-between border-b bg-background/90 px-4 py-3 backdrop-blur md:hidden">
+      <header className="sticky top-0 z-30 flex items-center justify-between border-b bg-background px-4 py-3 md:hidden">
         <Logo href="/dashboard" />
         <Button variant="ghost" size="sm" onClick={signOut}>
           <LogOut aria-hidden="true" /> Sign out
@@ -103,7 +100,7 @@ export function AppShell({ user, integrations, children }: { user: ShellUser; in
       </div>
 
       {/* Mobile bottom navigation */}
-      <nav aria-label="Main" className="fixed inset-x-0 bottom-0 z-30 grid grid-cols-5 border-t bg-background/95 pb-[env(safe-area-inset-bottom)] backdrop-blur md:hidden">
+      <nav aria-label="Main" className="fixed inset-x-0 bottom-0 z-30 grid grid-cols-5 border-t bg-background pb-[env(safe-area-inset-bottom)] md:hidden">
         {NAV.filter((n) => n.mobile).map((item) => {
           const active = isActive(pathname, item.href);
           return (
